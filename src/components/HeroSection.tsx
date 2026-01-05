@@ -42,16 +42,15 @@ const HeroSection = () => {
 
           {/* Main heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Free Fire{" "}
-            <span className="gradient-text">Redeem Codes</span>
+            <span className="gradient-text">Google Play</span> Codes
             <br />
-            & <span className="text-accent">Free Diamonds</span>
+            & <span className="text-accent">Free Fire Diamonds</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            Get the latest working redeem codes and claim free diamonds instantly. 
-            Updated every day with exclusive rewards for Free Fire players.
+            Get free Google Play redeem codes and Free Fire diamonds instantly. 
+            Updated daily with exclusive rewards for gamers worldwide.
           </p>
 
           {/* CTA Buttons */}
@@ -63,7 +62,7 @@ const HeroSection = () => {
               onClick={() => scrollToSection("redeem-codes")}
             >
               <Gift className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-              Get Redeem Codes
+              Get Google Play Code
             </Button>
             <Button
               variant="cyber"

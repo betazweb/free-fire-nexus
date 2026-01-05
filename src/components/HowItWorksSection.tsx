@@ -4,13 +4,13 @@ const steps = [
   {
     icon: <Gift className="w-8 h-8" />,
     title: "Select Reward",
-    description: "Choose a redeem code or diamond package",
+    description: "Choose Google Play code or Diamond package",
     color: "primary",
   },
   {
     icon: <User className="w-8 h-8" />,
-    title: "Enter Player ID",
-    description: "Input your Free Fire Player ID",
+    title: "Enter Details",
+    description: "Input your Player ID or Email address",
     color: "accent",
   },
   {

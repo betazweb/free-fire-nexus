@@ -1,180 +1,87 @@
-import { useState, useEffect, useRef } from "react";
-import { UserCheck, Gift, ShieldCheck, Rocket } from "lucide-react";
+import { Gift, User, CheckCircle, ArrowRight } from "lucide-react";
 
 const steps = [
   {
-    icon: UserCheck,
-    title: "Enter Player ID",
-    description: "Simply enter your Free Fire player ID. No password required for security.",
+    icon: <Gift className="w-8 h-8" />,
+    title: "Select Reward",
+    description: "Choose a redeem code or diamond package",
     color: "primary",
-    glowClass: "text-glow-red",
   },
   {
-    icon: Gift,
-    title: "Choose Reward",
-    description: "Select your desired reward from our extensive collection of premium items.",
-    color: "secondary",
-    glowClass: "text-glow-cyan",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Complete Verification",
-    description: "Quick verification to ensure rewards go to real players. Takes seconds!",
+    icon: <User className="w-8 h-8" />,
+    title: "Enter Player ID",
+    description: "Input your Free Fire Player ID",
     color: "accent",
-    glowClass: "text-glow-purple",
   },
   {
-    icon: Rocket,
-    title: "Receive Reward",
-    description: "Your reward will be delivered instantly to your account. Enjoy!",
-    color: "neon-yellow",
-    glowClass: "",
+    icon: <CheckCircle className="w-8 h-8" />,
+    title: "Verify & Claim",
+    description: "Complete verification and receive rewards",
+    color: "secondary",
   },
 ];
 
 const HowItWorksSection = () => {
-  const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            steps.forEach((_, index) => {
-              setTimeout(() => {
-                setVisibleSteps((prev) => [...prev, index]);
-              }, index * 200);
-            });
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const getColorClasses = (color: string) => {
-    switch (color) {
-      case "primary":
-        return { bg: "bg-primary", border: "border-primary", text: "text-primary" };
-      case "secondary":
-        return { bg: "bg-secondary", border: "border-secondary", text: "text-secondary" };
-      case "accent":
-        return { bg: "bg-accent", border: "border-accent", text: "text-accent" };
-      case "neon-yellow":
-        return { bg: "bg-neon-yellow", border: "border-neon-yellow", text: "text-neon-yellow" };
-      default:
-        return { bg: "bg-primary", border: "border-primary", text: "text-primary" };
-    }
-  };
-
   return (
-    <section id="how-it-works" className="py-20 md:py-32 relative" ref={sectionRef}>
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute top-1/2 left-0 w-full h-px opacity-20"
-          style={{
-            background: 'linear-gradient(90deg, transparent, hsl(0 100% 60%), transparent)',
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="how-it-works" className="py-20 md:py-32 relative">
+      <div className="container mx-auto px-4">
         {/* Section header */}
-        <div className="text-center mb-16 md:mb-20">
-          <span className="inline-block text-secondary font-heading text-sm tracking-widest uppercase mb-4">
+        <div className="text-center mb-12 md:mb-16">
+          <span className="inline-block text-primary font-heading text-sm tracking-widest uppercase mb-4">
             Simple Process
           </span>
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">
-            How It <span className="text-secondary text-glow-cyan">Works</span>
+            How It <span className="gradient-text">Works</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Get your rewards in just 4 simple steps. Fast, secure, and hassle-free.
+            Get your free rewards in just 3 easy steps
           </p>
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
-          {steps.map((step, index) => {
-            const colors = getColorClasses(step.color);
-            const isVisible = visibleSteps.includes(index);
-            const Icon = step.icon;
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 relative">
+            {/* Connecting line - desktop only */}
+            <div className="hidden md:block absolute top-16 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary" />
 
-            return (
+            {steps.map((step, index) => (
               <div
                 key={step.title}
-                className={`relative transition-all duration-700 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className="relative animate-fade-in"
+                style={{ animationDelay: `${index * 150}ms` }}
               >
-                {/* Connector line (hidden on mobile) */}
-                {index < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-16 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px">
-                    <div 
-                      className={`h-full transition-all duration-1000 delay-500 ${
-                        isVisible ? 'w-full' : 'w-0'
-                      }`}
-                      style={{
-                        background: `linear-gradient(90deg, ${
-                          step.color === 'primary' ? 'hsl(0 100% 60%)' :
-                          step.color === 'secondary' ? 'hsl(185 100% 50%)' :
-                          step.color === 'accent' ? 'hsl(280 100% 60%)' :
-                          'hsl(45 100% 55%)'
-                        }, transparent)`,
-                      }}
-                    />
-                  </div>
-                )}
-
                 {/* Step card */}
-                <div className="text-center group">
+                <div className="glass-card p-8 rounded-2xl border border-border/50 text-center hover:border-primary/50 transition-all duration-300 group">
                   {/* Step number */}
-                  <div className="relative inline-flex mb-6">
-                    <div 
-                      className={`
-                        w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center
-                        glass-card border-2 ${colors.border} transition-all duration-500
-                        group-hover:scale-110 group-hover:rotate-3
-                      `}
-                      style={{
-                        boxShadow: `0 0 30px ${
-                          step.color === 'primary' ? 'hsl(0 100% 60% / 0.3)' :
-                          step.color === 'secondary' ? 'hsl(185 100% 50% / 0.3)' :
-                          step.color === 'accent' ? 'hsl(280 100% 60% / 0.3)' :
-                          'hsl(45 100% 55% / 0.3)'
-                        }`,
-                      }}
-                    >
-                      <Icon className={`w-10 h-10 md:w-12 md:h-12 ${colors.text}`} />
-                    </div>
-                    <span 
-                      className={`
-                        absolute -top-2 -right-2 w-8 h-8 rounded-full flex items-center justify-center
-                        font-heading font-bold text-sm ${colors.bg} text-background
-                      `}
-                    >
-                      {index + 1}
-                    </span>
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-sm font-bold text-primary-foreground z-10">
+                    {index + 1}
+                  </div>
+
+                  {/* Icon */}
+                  <div 
+                    className="w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                    style={{ 
+                      backgroundColor: `hsl(var(--${step.color}) / 0.1)`,
+                      color: `hsl(var(--${step.color}))`
+                    }}
+                  >
+                    {step.icon}
                   </div>
 
                   {/* Content */}
-                  <h3 className={`text-xl font-heading font-bold mb-3 ${step.glowClass}`}>
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm md:text-base max-w-xs mx-auto">
-                    {step.description}
-                  </p>
+                  <h3 className="text-xl font-heading font-bold mb-2">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm">{step.description}</p>
                 </div>
+
+                {/* Arrow - mobile only */}
+                {index < steps.length - 1 && (
+                  <div className="md:hidden flex justify-center my-4">
+                    <ArrowRight className="w-6 h-6 text-primary rotate-90" />
+                  </div>
+                )}
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,133 +1,101 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Zap, Play, ChevronDown } from "lucide-react";
+import { Sparkles, Gift } from "lucide-react";
+import { Button } from "./ui/button";
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const scrollToRewards = () => {
-    document.getElementById('rewards')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToHowItWorks = () => {
-    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute top-20 left-10 w-32 h-32 border border-primary/30 rounded-lg rotate-45 animate-float"
-          style={{ animationDelay: '0s' }}
-        />
-        <div 
-          className="absolute top-40 right-20 w-24 h-24 border border-secondary/30 rounded-full animate-float"
-          style={{ animationDelay: '1s' }}
-        />
-        <div 
-          className="absolute bottom-32 left-1/4 w-16 h-16 border border-accent/30 rotate-12 animate-float"
-          style={{ animationDelay: '2s' }}
-        />
-        <div 
-          className="absolute bottom-40 right-1/3 w-20 h-20 border border-primary/20 rounded-lg rotate-[-20deg] animate-float"
-          style={{ animationDelay: '1.5s' }}
-        />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/10" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl" />
+      
+      {/* Floating diamonds */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float text-accent/30"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${4 + i % 3}s`,
+            }}
+          >
+            <Sparkles className="w-6 h-6" />
+          </div>
+        ))}
       </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10">
-        {/* Badge */}
-        <div 
-          className={`inline-flex items-center gap-2 glass-card px-4 py-2 mb-8 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <Zap className="w-4 h-4 text-neon-yellow" />
-          <span className="text-sm font-medium text-muted-foreground">
-            Limited Time Offer • 500+ Players Online
-          </span>
-        </div>
-
-        {/* Main heading */}
-        <h1 
-          className={`text-4xl md:text-6xl lg:text-7xl font-heading font-black mb-6 leading-tight transition-all duration-700 delay-100 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <span className="text-foreground">Get </span>
-          <span className="gradient-text">Free Fire</span>
-          <br />
-          <span className="text-foreground">Rewards & </span>
-          <span className="text-secondary text-glow-cyan">Exclusive Items</span>
-        </h1>
-
-        {/* Subtitle */}
-        <p 
-          className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 transition-all duration-700 delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          Unlock premium diamonds, legendary skins, elite passes, and exclusive emotes. 
-          No password required – 100% secure and instant delivery!
-        </p>
-
-        {/* CTA Buttons */}
-        <div 
-          className={`flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 transition-all duration-700 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <Button 
-            variant="gaming" 
-            size="xl"
-            onClick={scrollToRewards}
-            className="group"
-          >
-            <Zap className="w-5 h-5 group-hover:animate-pulse" />
-            Get Rewards Now
-          </Button>
-          <Button 
-            variant="glass" 
-            size="xl"
-            onClick={scrollToHowItWorks}
-            className="group"
-          >
-            <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            How It Works
-          </Button>
-        </div>
-
-        {/* Stats */}
-        <div 
-          className={`grid grid-cols-3 gap-4 md:gap-8 max-w-2xl mx-auto transition-all duration-700 delay-400 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <div className="glass-card p-4 md:p-6">
-            <div className="text-2xl md:text-4xl font-heading font-bold text-primary text-glow-red">50K+</div>
-            <div className="text-xs md:text-sm text-muted-foreground">Happy Players</div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-primary/30 mb-8 animate-fade-in">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-sm font-medium text-muted-foreground">Updated Daily • Limited Time Rewards</span>
           </div>
-          <div className="glass-card p-4 md:p-6">
-            <div className="text-2xl md:text-4xl font-heading font-bold text-secondary text-glow-cyan">1M+</div>
-            <div className="text-xs md:text-sm text-muted-foreground">Rewards Sent</div>
+
+          {/* Main heading */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            Free Fire{" "}
+            <span className="gradient-text">Redeem Codes</span>
+            <br />
+            & <span className="text-accent">Free Diamonds</span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            Get the latest working redeem codes and claim free diamonds instantly. 
+            Updated every day with exclusive rewards for Free Fire players.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <Button
+              variant="gaming"
+              size="lg"
+              className="group text-lg px-8 py-6"
+              onClick={() => scrollToSection("redeem-codes")}
+            >
+              <Gift className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Get Redeem Codes
+            </Button>
+            <Button
+              variant="cyber"
+              size="lg"
+              className="group text-lg px-8 py-6"
+              onClick={() => scrollToSection("free-diamonds")}
+            >
+              <Sparkles className="w-5 h-5 mr-2 group-hover:animate-spin" />
+              Claim Free Diamonds
+            </Button>
           </div>
-          <div className="glass-card p-4 md:p-6">
-            <div className="text-2xl md:text-4xl font-heading font-bold text-accent text-glow-purple">24/7</div>
-            <div className="text-xs md:text-sm text-muted-foreground">Active Support</div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 mt-16 max-w-lg mx-auto animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            {[
+              { value: "50K+", label: "Codes Claimed" },
+              { value: "Daily", label: "Updates" },
+              { value: "100%", label: "Free" },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-2xl md:text-3xl font-heading font-bold gradient-text">{stat.value}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Scroll indicator */}
-        <div 
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <ChevronDown className="w-8 h-8 text-muted-foreground animate-bounce" />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center pt-2">
+          <div className="w-1.5 h-3 bg-primary rounded-full animate-pulse" />
         </div>
       </div>
     </section>

@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
-import { Copy, Check, Clock, Gift } from "lucide-react";
+import { Copy, Check, Clock, CreditCard } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 
 interface RedeemCode {
   id: string;
   code: string;
-  reward: string;
+  value: string;
   expiresIn: number; // seconds
 }
 
 const redeemCodes: RedeemCode[] = [
-  { id: "1", code: "FF10GCGXRNHY", reward: "Fire Head Hunting Parachute", expiresIn: 86400 },
-  { id: "2", code: "FFXVGG8NU4YB", reward: "Custom Room Card", expiresIn: 43200 },
-  { id: "3", code: "FFE4E0DIKX2D", reward: "Bonus 50 Diamonds", expiresIn: 21600 },
-  { id: "4", code: "FFAC2YXE6RF2", reward: "Justice Fighter Weapon Loot Crate", expiresIn: 14400 },
-  { id: "5", code: "FFA0ES11YL2D", reward: "Shirou Character Bundle", expiresIn: 7200 },
-  { id: "6", code: "FFX60C2IIVYU", reward: "Winterlands Weapon Loot Crate", expiresIn: 3600 },
+  { id: "1", code: "GPLAY7K9M2X4N8P3", value: "$5 Google Play Credit", expiresIn: 86400 },
+  { id: "2", code: "GPNX4R8T2W6Y9Q1L", value: "$10 Google Play Credit", expiresIn: 43200 },
+  { id: "3", code: "GP3H7J9K2M5N8R4T", value: "$15 Google Play Credit", expiresIn: 21600 },
+  { id: "4", code: "GPQW2E4R6T8Y0U1I", value: "$25 Google Play Credit", expiresIn: 14400 },
+  { id: "5", code: "GP5A7S9D1F3G5H7J", value: "$10 Google Play Credit", expiresIn: 7200 },
+  { id: "6", code: "GPZX2C4V6B8N0M1K", value: "$5 Google Play Credit", expiresIn: 3600 },
 ];
 
 const formatTime = (seconds: number) => {
@@ -26,7 +26,12 @@ const formatTime = (seconds: number) => {
   return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 };
 
-const RedeemCodeCard = ({ code, reward, expiresIn }: RedeemCode) => {
+const formatCode = (code: string) => {
+  // Format as XXXX-XXXX-XXXX-XXXX
+  return code.match(/.{1,4}/g)?.join("-") || code;
+};
+
+const RedeemCodeCard = ({ code, value, expiresIn }: RedeemCode) => {
   const [timeLeft, setTimeLeft] = useState(expiresIn);
   const [copied, setCopied] = useState(false);
 
@@ -44,23 +49,18 @@ const RedeemCodeCard = ({ code, reward, expiresIn }: RedeemCode) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const maskCode = (code: string) => {
-    if (code.length <= 8) return code;
-    return code.slice(0, 4) + "-" + code.slice(4, 8) + "-" + code.slice(8);
-  };
-
   return (
     <div className="glass-card p-6 rounded-2xl border border-primary/20 hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10">
-      {/* Reward label */}
+      {/* Value label */}
       <div className="flex items-center gap-2 mb-4">
-        <Gift className="w-4 h-4 text-accent" />
-        <span className="text-sm text-muted-foreground">{reward}</span>
+        <CreditCard className="w-4 h-4 text-secondary" />
+        <span className="text-sm font-medium text-secondary">{value}</span>
       </div>
 
       {/* Code display */}
       <div className="bg-background/50 rounded-xl p-4 mb-4 border border-border/50">
-        <code className="text-xl md:text-2xl font-mono font-bold text-foreground tracking-wider">
-          {maskCode(code)}
+        <code className="text-lg md:text-xl font-mono font-bold text-foreground tracking-wider">
+          {formatCode(code)}
         </code>
       </div>
 
@@ -101,14 +101,14 @@ const RedeemCodeSection = () => {
       <div className="container mx-auto px-4">
         {/* Section header */}
         <div className="text-center mb-12 md:mb-16">
-          <span className="inline-block text-primary font-heading text-sm tracking-widest uppercase mb-4">
+          <span className="inline-block text-secondary font-heading text-sm tracking-widest uppercase mb-4">
             Today's Codes
           </span>
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">
-            Active <span className="gradient-text">Redeem Codes</span>
+            <span className="gradient-text">Google Play</span> Redeem Codes
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Copy these working codes and redeem them on the official Free Fire rewards page. 
+            Copy these working Google Play codes and redeem them in the Play Store. 
             Codes expire soon – claim them before they're gone!
           </p>
         </div>
@@ -128,9 +128,9 @@ const RedeemCodeSection = () => {
 
         {/* Info note */}
         <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-accent/30">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-secondary/30">
             <span className="text-sm text-muted-foreground">
-              🔄 New codes added every 24 hours
+              🔄 New Google Play codes added every 24 hours
             </span>
           </div>
         </div>

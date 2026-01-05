@@ -3,7 +3,7 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "./ui/button";
 
 const navLinks = [
-  { href: "#redeem-codes", label: "Redeem Codes" },
+  { href: "#redeem-codes", label: "Google Play Codes" },
   { href: "#free-diamonds", label: "Free Diamonds" },
   { href: "#how-it-works", label: "How It Works" },
 ];

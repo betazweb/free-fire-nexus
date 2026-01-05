@@ -17,9 +17,9 @@ const Footer = () => {
           {/* Disclaimer */}
           <div className="max-w-2xl mx-auto mb-8">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Disclaimer:</strong> This website is not affiliated with Garena or Free Fire. 
-              All content is for entertainment purposes only. Free Fire is a registered trademark of Garena. 
-              All game-related assets and trademarks belong to their respective owners.
+              <strong className="text-foreground">Disclaimer:</strong> This website is not affiliated with Google, Garena, or Free Fire. 
+              All content is for entertainment purposes only. Google Play is a trademark of Google LLC. Free Fire is a registered trademark of Garena. 
+              All trademarks belong to their respective owners.
             </p>
           </div>
 

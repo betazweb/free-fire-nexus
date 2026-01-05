@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { Sparkles, Gift, Shield, Users } from "lucide-react";
 
 const activities = [
-  "Player***82 claimed 300 Diamonds",
-  "New Redeem Code unlocked!",
-  "Player***15 redeemed FF10GCGXRNHY",
-  "Player***47 claimed 500 Diamonds",
-  "Player***93 received Elite Pass Reward",
-  "Player***28 claimed 100 Diamonds",
-  "New Diamond Bonus added!",
-  "Player***61 redeemed FFXVGG8NU4YB",
+  "User***82 claimed $10 Google Play Code",
+  "New Google Play Code unlocked!",
+  "Player***15 claimed 500 Free Fire Diamonds",
+  "User***47 redeemed $25 Google Play Credit",
+  "Player***93 received 300 Diamonds",
+  "User***28 claimed $5 Google Play Code",
+  "New Diamond Bonus available!",
+  "Player***61 claimed 100 Diamonds",
 ];
 
 const stats = [

@@ -5,6 +5,7 @@ import RewardBundleCard from "@/components/RewardBundleCard";
 import ClaimModal from "@/components/ClaimModal";
 import CountdownPage from "@/components/CountdownPage";
 import SuccessPopup from "@/components/SuccessPopup";
+import AdBanner from "@/components/AdBanner";
 
 // Bundle images
 import yujiBundle from "@/assets/yuji-itadori-bundle.jpg";
@@ -58,8 +59,8 @@ const Index = () => {
       
       <main className="flex-1 container py-6">
         {/* Ad space top */}
-        <div className="bg-muted/30 border border-dashed border-border rounded-lg p-4 mb-6 text-center">
-          <p className="text-muted-foreground text-xs">ADVERTISEMENT SPACE</p>
+        <div className="mb-6">
+          <AdBanner />
         </div>
 
         {/* Section header */}
@@ -83,8 +84,8 @@ const Index = () => {
         </div>
 
         {/* Ad space bottom */}
-        <div className="bg-muted/30 border border-dashed border-border rounded-lg p-4 mt-6 text-center">
-          <p className="text-muted-foreground text-xs">ADVERTISEMENT SPACE</p>
+        <div className="mt-6">
+          <AdBanner />
         </div>
       </main>
 

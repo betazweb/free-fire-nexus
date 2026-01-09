@@ -62,7 +62,7 @@ const CountdownPage = ({ isOpen, onComplete }: CountdownPageProps) => {
 
         {/* Status text */}
         <div className="text-center space-y-2">
-          <p className="text-foreground font-medium">Please wait while we verify your reward</p>
+          <p className="text-foreground font-medium">Please wait while your reward is being verified</p>
           <p className="text-muted-foreground text-sm">Do not close this page</p>
         </div>
 

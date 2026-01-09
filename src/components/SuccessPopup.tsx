@@ -29,7 +29,7 @@ const SuccessPopup = ({ isOpen, onClose }: SuccessPopupProps) => {
           </div>
           
           {/* Title */}
-          <h2 className="font-heading text-3xl text-primary">SUCCESS!</h2>
+          <h2 className="font-heading text-3xl text-primary">Successfully Claimed!</h2>
           
           {/* Message */}
           <div className="space-y-2">
@@ -37,7 +37,7 @@ const SuccessPopup = ({ isOpen, onClose }: SuccessPopupProps) => {
               Congratulations!
             </p>
             <p className="text-muted-foreground text-sm">
-              Your Free Fire reward has been successfully claimed. Check your game inbox within 24 hours.
+              Your Free Fire bundle will be delivered soon.
             </p>
           </div>
           

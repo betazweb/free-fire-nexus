@@ -6,12 +6,19 @@ import ClaimModal from "@/components/ClaimModal";
 import CountdownPage from "@/components/CountdownPage";
 import SuccessPopup from "@/components/SuccessPopup";
 
+// Bundle images
+import yujiBundle from "@/assets/yuji-itadori-bundle.jpg";
+import sukunaBundle1 from "@/assets/sukuna-bundle-1.jpg";
+import sukunaBundle2 from "@/assets/sukuna-bundle-2.jpg";
+import megumiBundle from "@/assets/megumi-fushiguro-bundle.jpg";
+import nobaraBundle from "@/assets/nobara-kugisaki-bundle.jpg";
+
 const rewardBundles = [
-  { id: 1, name: "Diamond Royale Bundle" },
-  { id: 2, name: "Elite Pass Reward" },
-  { id: 3, name: "Legendary Character Skin" },
-  { id: 4, name: "Weapon Skin Pack" },
-  { id: 5, name: "500 Diamonds Gift" },
+  { id: 1, name: "Yuji Itadori Bundle", image: yujiBundle },
+  { id: 2, name: "Ryomen Sukuna Bundle", image: sukunaBundle1 },
+  { id: 3, name: "Ryomen Sukuna Bundle (Alternate)", image: sukunaBundle2 },
+  { id: 4, name: "Megumi Fushiguro Bundle", image: megumiBundle },
+  { id: 5, name: "Nobara Kugisaki Bundle", image: nobaraBundle },
 ];
 
 const Index = () => {
@@ -63,12 +70,13 @@ const Index = () => {
           <p className="text-muted-foreground text-sm">Select a reward bundle to claim</p>
         </div>
 
-        {/* Reward bundles grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Reward bundles grid - mobile first single column */}
+        <div className="grid grid-cols-1 gap-4">
           {rewardBundles.map((bundle) => (
             <RewardBundleCard
               key={bundle.id}
               name={bundle.name}
+              imageUrl={bundle.image}
               onClaim={() => handleClaim(bundle.name)}
             />
           ))}
